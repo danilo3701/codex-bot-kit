@@ -79,6 +79,10 @@ Meta-guides:
 - Polling rule: **replicas = 1**
 - If confidence < 90% → ask questions and stop
 
+3.1) Create "Source of Truth" policy in the target project:
+   - Use `docs_templates/FOR_source_of_truth.md` → output `docs/source_of_truth.md`
+   - Rule: if docs conflict, follow `docs/source_of_truth.md`
+
 ---
 
 ## 4) Canonical files (avoid duplicates)
