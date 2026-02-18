@@ -32,6 +32,39 @@ We work in small steps:
 
 If the task request mixes steps — ask to split.
 
+## Clarity tracking (mandatory)
+We track clarity to decide whether to continue PLAN or allow BUILD.
+
+### Two metrics (required)
+1) Project Clarity % — overall understanding of the bot as a system:
+   purpose/users, core flows, menu/modules map, UX rules, data/storage, security basics, ops/runbook, DoD.
+2) Module Clarity % — per module (module = one main-menu button/branch), based on:
+   contract completeness + tests coverage + data/state + edge/errors + integrations.
+
+Source of truth:
+- `docs/clarity.md`
+
+### Update rules
+- PLAN (required): after every PLAN PR (bootstrap or module plan), update `docs/clarity.md`.
+- REVIEW/VERIFY (recommended): if review reveals missing coverage, update `docs/clarity.md` "Missing" items.
+- BUILD (default): do NOT update clarity files unless explicitly requested.
+
+### Build gates (default thresholds)
+- Project Clarity >= 80% → allowed to start BUILD for the first module.
+- Module Clarity >= 85%  → allowed to BUILD that module.
+If below threshold: STOP BUILD and propose a PLAN task to close the missing items.
+
+### Required PLAN output
+At the end of every PLAN response include:
+- Project Clarity % (current)
+- Lowest 1–3 modules by Module Clarity %
+- “Missing to reach 95%” (3–7 bullets)
+- Next PLAN task proposal (Goal + ALLOWLIST + DoD)
+
+### Anti-hallucination rule
+- Do not guess scores. If docs are missing: write "НЕ ХВАТАЕТ:" and ask up to 3 questions.
+- Scores must be justified by existing files (requirements/contracts/tests/health/runbook).
+
 ## Safety rails (90% critical)
 - Never change files outside the provided ALLOWLIST for the current task.
 - If a required change is outside ALLOWLIST: STOP and ask 1–3 questions.

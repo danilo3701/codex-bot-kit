@@ -13,3 +13,8 @@ RULES:
 CHECK:
 - Ensure paths (modules/docs/entry points) match the repo tree.
 - Ensure SELF-CHECK section requirements are included verbatim.
+
+- The generated AGENTS.md MUST include the section "Clarity tracking (mandatory)" with:
+  - Two metrics: Project Clarity % and Module Clarity %
+  - Update rules (PLAN updates docs/clarity.md)
+  - Build gates (80% / 85%)
